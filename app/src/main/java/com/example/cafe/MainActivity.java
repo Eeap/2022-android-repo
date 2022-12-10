@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView mPrice1, mPrice2, mPrice3;
     private ImageView mImg1,mImg2,mImg3;
     private Button mBtn1,mBtn2,mBtn3;
+    private EditText editText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         mBtn1 = (Button) findViewById(R.id.btnOrder1);
         mBtn2 = (Button) findViewById(R.id.btnOrder2);
         mBtn3 = (Button) findViewById(R.id.btnOrder3);
+        editText = (EditText) findViewById(R.id.text);
     }
 
     public void m0nClick(View v) {
@@ -47,13 +50,9 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("test", coffee.toString());
                 String key1 = coffee.keySet().iterator().next();
                 Log.d("test", key1);
-//                Intent intent = new Intent(this, SubActivity1.class);
-//                intent.putExtra("name", key);
-//                intent.putExtra("price",menu.get(key).toString());
-//                startActivityForResult(intent, 0);
                 mText1.setText(key1);
                 mPrice1.setText(coffee.get(key1).toString());
-                mImg1.setImageResource(R.drawable.coffee);
+                setImage(mImg1,key1);
                 mBtn1.setVisibility(View.VISIBLE);
                 break;
             case R.id.btnJuice:
@@ -61,13 +60,9 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("test", juice.toString());
                 String key2 = juice.keySet().iterator().next();
                 Log.d("test", key2);
-//                Intent intent = new Intent(this, SubActivity1.class);
-//                intent.putExtra("name", key);
-//                intent.putExtra("price",menu.get(key).toString());
-//                startActivityForResult(intent, 0);
                 mText1.setText(key2);
                 mPrice1.setText(juice.get(key2).toString());
-                mImg1.setImageResource(R.drawable.juice);
+                setImage(mImg1,key2);
                 mBtn1.setVisibility(View.VISIBLE);
                 break;
             case R.id.btnTea:
@@ -75,13 +70,9 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("test", tea.toString());
                 String key3 = tea.keySet().iterator().next();
                 Log.d("test", key3);
-//                Intent intent = new Intent(this, SubActivity1.class);
-//                intent.putExtra("name", key);
-//                intent.putExtra("price",menu.get(key).toString());
-//                startActivityForResult(intent, 0);
                 mText1.setText(key3);
                 mPrice1.setText(tea.get(key3).toString());
-                mImg1.setImageResource(R.drawable.tea);
+                setImage(mImg1,key3);
                 mBtn1.setVisibility(View.VISIBLE);
                 break;
         }
@@ -119,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, SubActivity1.class);
                 intent.putExtra("name", mText1.getText().toString());
                 intent.putExtra("price",mPrice1.getText().toString());
-                intent.putExtra("img", R.drawable.coffee);
                 startActivityForResult(intent, 0);
                 break;
         }
@@ -131,5 +121,42 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this,mText1.getText().toString()+"주문 완료",Toast.LENGTH_SHORT).show();
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+    public void m0nClickSearch(View v) {
+        Map<String, Integer> result = new HashMap<>();
+        Map<String, Integer> coffee = readLine(R.id.btnCoffee);
+        for (String key: coffee.keySet()){
+            result.put(key, coffee.get(key));
+        }
+        Map<String, Integer> juice = readLine(R.id.btnJuice);
+        for (String key: juice.keySet()){
+            result.put(key, juice.get(key));
+        }
+        Map<String, Integer> tea = readLine(R.id.btnTea);
+        for (String key: tea.keySet()){
+            result.put(key, tea.get(key));
+        }
+        String search = editText.getText().toString();
+        if (result.containsKey(search)) {
+            mText1.setText(search);
+            mPrice1.setText(result.get(search).toString());
+            setImage(mImg1,search);
+            mBtn1.setVisibility(View.VISIBLE);
+        } else {
+            Toast.makeText(this,search+" 메뉴는 존재하지 않습니다.",Toast.LENGTH_SHORT).show();
+        }
+    }
+    public void setImage(ImageView mImg, String name) {
+        switch (name) {
+            case "아메리카노":
+                mImg.setImageResource(R.drawable.coffee);
+                break;
+            case "자몽허니블랙티":
+                mImg.setImageResource(R.drawable.tea);
+                break;
+            case "오렌지주스":
+                mImg.setImageResource(R.drawable.juice);
+                break;
+        }
     }
 }

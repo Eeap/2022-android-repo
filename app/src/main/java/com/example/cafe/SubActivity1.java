@@ -22,16 +22,28 @@ public class SubActivity1 extends AppCompatActivity {
         Intent intent = getIntent();
         name = intent.getStringExtra("name");
         price = intent.getStringExtra("price");
-        imgId = intent.getIntExtra("img",-1);
         Log.d("sub", String.valueOf(imgId));
         textName.setText(name);
         textPrice.setText(price);
         if (imgId != -1) {
-            imageView.setImageResource(imgId);
+            setImage(imageView,name);
         }
     }
     public void m0nClickOrder(View v) {
         setResult(RESULT_OK);
         finish();
+    }
+    public void setImage(ImageView mImg, String name) {
+        switch (name) {
+            case "아메리카노":
+                mImg.setImageResource(R.drawable.coffee);
+                break;
+            case "자몽허니블랙티":
+                mImg.setImageResource(R.drawable.tea);
+                break;
+            case "오렌지주스":
+                mImg.setImageResource(R.drawable.juice);
+                break;
+        }
     }
 }
