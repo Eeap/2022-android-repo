@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void m0nClick(View v) {
+        init();
         switch (v.getId()) {
             case R.id.btnCoffee:
                 Map<String, Integer> coffee = readLine(R.id.btnCoffee);
@@ -63,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
                 mBtn1.setVisibility(View.VISIBLE);
                 break;
             case R.id.btnJuice:
-                init();
                 Map<String, Integer> juice = readLine(R.id.btnJuice);
                 Log.d("test", juice.toString());
                 String key2 = juice.keySet().iterator().next();
@@ -163,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
     public void m0nClickSearch(View v) {
+        init();
         Map<String, Integer> result = makeAllList();
         String search = editText.getText().toString();
         if (result.containsKey(search)) {
@@ -221,5 +222,20 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
-    
+    public void init() {
+        mText1.setText(null);
+        mPrice1.setText(null);
+        mImg1.setImageDrawable(null);
+        mBtn1.setVisibility(View.GONE);
+
+        mText2.setText(null);
+        mPrice2.setText(null);
+        mImg2.setImageDrawable(null);
+        mBtn2.setVisibility(View.GONE);
+
+        mText3.setText(null);
+        mPrice3.setText(null);
+        mImg3.setImageDrawable(null);
+        mBtn3.setVisibility(View.GONE);
+    }
 }
