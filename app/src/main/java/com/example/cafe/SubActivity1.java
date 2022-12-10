@@ -12,12 +12,14 @@ import android.widget.TextView;
 public class SubActivity1 extends AppCompatActivity {
     private String name,price;
     private int imgId;
+    private TextView textName,textPrice,textCnt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sub1);
-        TextView textName = (TextView) findViewById(R.id.text1);
-        TextView textPrice = (TextView) findViewById(R.id.price1);
+        textName = (TextView) findViewById(R.id.text1);
+        textPrice = (TextView) findViewById(R.id.price1);
+        textCnt = (TextView) findViewById(R.id.cntText);
         ImageView imageView = (ImageView) findViewById(R.id.img1);
         Intent intent = getIntent();
         name = intent.getStringExtra("name");
@@ -30,9 +32,9 @@ public class SubActivity1 extends AppCompatActivity {
         }
     }
     public void m0nClickOrder(View v) {
-        TextView textName = (TextView) findViewById(R.id.text1);
         Intent data = new Intent();
         data.putExtra("name", textName.getText().toString());
+        data.putExtra("cnt", textCnt.getText().toString());
         setResult(RESULT_OK,data);
         finish();
     }
@@ -47,6 +49,14 @@ public class SubActivity1 extends AppCompatActivity {
             case "오렌지주스":
                 mImg.setImageResource(R.drawable.juice);
                 break;
+        }
+    }
+    public void m0nClickPlus(View v) {
+        textCnt.setText(String.valueOf(Integer.parseInt(textCnt.getText().toString())+1));
+    }
+    public void m0nClickMinus(View v) {
+        if (Integer.parseInt(textCnt.getText().toString()) > 1) {
+            textCnt.setText(String.valueOf(Integer.parseInt(textCnt.getText().toString())-1));
         }
     }
 }

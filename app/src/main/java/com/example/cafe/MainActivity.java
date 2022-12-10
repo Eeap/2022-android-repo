@@ -154,11 +154,12 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 0 && resultCode == RESULT_OK) {
-            Toast.makeText(this,data.getStringExtra("name")+"주문 완료",Toast.LENGTH_SHORT).show();
+            String name = data.getStringExtra("name");
+            int cnt = Integer.parseInt(data.getStringExtra("cnt"));
+            Toast.makeText(this,name+" "+cnt+"개 주문 완료",Toast.LENGTH_SHORT).show();
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
