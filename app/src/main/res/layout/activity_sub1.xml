@@ -1,85 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="179dp"
         android:orientation="horizontal">
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnCoffee"
-            android:hint="커피/라떼"
-            android:onClick="m0nClick"/>
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnTea"
-            android:hint="차"
-            android:onClick="m0nClick"/>
 
-        <Button
-            android:id="@+id/btnJuice"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:hint="주스"
-            android:onClick="m0nClick"/>
-
-        <Button
-            android:id="@+id/btnPrice"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:hint="가격별"
-            android:onClick="m0nClick"/>
-    </LinearLayout>
-    <EditText
-        android:id="@+id/text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="검색어 입력" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
         <ImageView
             android:id="@+id/img1"
-            android:layout_width="wrap_content"
-            android:layout_height="163dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:onClick="m0nClick1" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/text1"
             android:layout_width="0dp"
-            android:layout_height="163dp"
-            android:layout_weight="1"
-            android:hint="."
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_weight="1" />
 
         <TextView
             android:id="@+id/price1"
             android:layout_width="0dp"
-            android:layout_height="163dp"
-            android:layout_weight="1"
-            android:hint="."
-            />
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_weight="1" />
     </LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="m0nClickOrder"
+        android:text="주문하기"
+        android:id="@+id/btnOrder"/>
 
 </LinearLayout>

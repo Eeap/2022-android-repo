@@ -1,5 +1,6 @@
 package com.example.cafe;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView mText1, mText2, mText3;
     private TextView mPrice1, mPrice2, mPrice3;
     private ImageView mImg1,mImg2,mImg3;
+    private Button mBtn1,mBtn2,mBtn3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +35,9 @@ public class MainActivity extends AppCompatActivity {
         mImg1 = (ImageView) findViewById(R.id.img1);
         mImg2 = (ImageView) findViewById(R.id.img2);
         mImg3 = (ImageView) findViewById(R.id.img3);
-
+        mBtn1 = (Button) findViewById(R.id.btnOrder1);
+        mBtn2 = (Button) findViewById(R.id.btnOrder2);
+        mBtn3 = (Button) findViewById(R.id.btnOrder3);
     }
 
     public void m0nClick(View v) {
@@ -49,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 mText1.setText(key1);
                 mPrice1.setText(coffee.get(key1).toString());
                 mImg1.setImageResource(R.drawable.coffee);
+                mBtn1.setVisibility(View.VISIBLE);
                 break;
             case R.id.btnJuice:
                 Map<String, Integer> juice = readLine(R.id.btnJuice);
@@ -62,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 mText1.setText(key2);
                 mPrice1.setText(juice.get(key2).toString());
                 mImg1.setImageResource(R.drawable.juice);
+                mBtn1.setVisibility(View.VISIBLE);
                 break;
             case R.id.btnTea:
                 Map<String, Integer> tea = readLine(R.id.btnTea);
@@ -75,10 +82,10 @@ public class MainActivity extends AppCompatActivity {
                 mText1.setText(key3);
                 mPrice1.setText(tea.get(key3).toString());
                 mImg1.setImageResource(R.drawable.tea);
+                mBtn1.setVisibility(View.VISIBLE);
                 break;
         }
     }
-
     public Map<String, Integer> readLine(int btn) {
         Map<String, Integer> result = new HashMap<>();
         try {
@@ -104,5 +111,25 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return result;
+    }
+    public void m0nClickImg(View v) {
+        switch (v.getId()) {
+            case R.id.btnOrder1:
+
+                Intent intent = new Intent(this, SubActivity1.class);
+                intent.putExtra("name", mText1.getText().toString());
+                intent.putExtra("price",mPrice1.getText().toString());
+                intent.putExtra("img", R.drawable.coffee);
+                startActivityForResult(intent, 0);
+                break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 0 && resultCode == RESULT_OK) {
+            Toast.makeText(this,mText1.getText().toString()+"주문 완료",Toast.LENGTH_SHORT).show();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

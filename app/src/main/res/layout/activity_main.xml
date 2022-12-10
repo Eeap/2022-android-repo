@@ -52,21 +52,17 @@
             android:id="@+id/img1"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:onClick="m0nClick1" />
+            android:layout_height="match_parent" />
         <ImageView
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            android:id="@+id/img2"
-            android:onClick="m0nClick2"/>
-
+            android:id="@+id/img2"/>
         <ImageView
             android:id="@+id/img3"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:onClick="m0nClick3"/>
+            android:layout_height="match_parent"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -119,6 +115,40 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnOrder1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="주문"
+            android:visibility="gone"
+            android:onClick="m0nClickImg"
+            />
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:id="@+id/btnOrder2"
+            android:text="주문"
+            android:visibility="gone"
+            android:onClick="m0nClickImg"
+            />
+
+        <Button
+            android:id="@+id/btnOrder3"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="주문"
+            android:visibility="gone"
+            android:onClick="m0nClickImg"
             />
     </LinearLayout>
 
