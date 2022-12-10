@@ -66,21 +66,22 @@
             android:id="@+id/img1"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="match_parent" />
+            android:layout_height="150dp" />
         <ImageView
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="match_parent"
+            android:layout_height="150dp"
             android:id="@+id/img2"/>
         <ImageView
             android:id="@+id/img3"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="match_parent"/>
+            android:layout_height="150dp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="0dp"
         android:orientation="horizontal">
 
         <TextView
@@ -88,14 +89,16 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text=""
+            android:textStyle="bold"
+            android:textAlignment="center"
              />
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:id="@+id/text2"
-            android:text=""
+            android:textStyle="bold"
+            android:textAlignment="center"
             />
 
         <TextView
@@ -103,7 +106,8 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            android:text=""
+            android:textStyle="bold"
+            android:textAlignment="center"
              />
     </LinearLayout>
     <LinearLayout
@@ -116,12 +120,16 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:textStyle="bold"
+            android:textAlignment="center"
              />
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:id="@+id/price2"
+            android:textStyle="bold"
+            android:textAlignment="center"
             />
 
         <TextView
@@ -129,6 +137,8 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
+            android:textStyle="bold"
+            android:textAlignment="center"
             />
     </LinearLayout>
     <LinearLayout
@@ -138,16 +148,14 @@
 
         <Button
             android:id="@+id/btnOrder1"
-            android:layout_width="0dp"
+            android:layout_width="140dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:text="담기"
             android:visibility="gone"
             android:onClick="m0nClickImg"
             />
         <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_width="140dp"
             android:layout_height="match_parent"
             android:id="@+id/btnOrder2"
             android:text="담기"
@@ -157,8 +165,7 @@
 
         <Button
             android:id="@+id/btnOrder3"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_width="140dp"
             android:layout_height="match_parent"
             android:text="담기"
             android:visibility="gone"

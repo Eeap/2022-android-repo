@@ -30,7 +30,10 @@ public class SubActivity1 extends AppCompatActivity {
         }
     }
     public void m0nClickOrder(View v) {
-        setResult(RESULT_OK);
+        TextView textName = (TextView) findViewById(R.id.text1);
+        Intent data = new Intent();
+        data.putExtra("name", textName.getText().toString());
+        setResult(RESULT_OK,data);
         finish();
     }
     public void setImage(ImageView mImg, String name) {

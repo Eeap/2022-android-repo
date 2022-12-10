@@ -13,7 +13,7 @@
         <ImageView
             android:id="@+id/img1"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="150dp"
             android:layout_weight="1"
             android:onClick="m0nClick1" />
 
@@ -23,7 +23,9 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:gravity="center"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textAlignment="center"/>
 
         <TextView
             android:id="@+id/price1"
@@ -31,7 +33,10 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:gravity="center"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textAlignment="center"/>
+
     </LinearLayout>
     <Button
         android:layout_width="match_parent"

@@ -15,7 +15,14 @@ import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
@@ -56,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 mBtn1.setVisibility(View.VISIBLE);
                 break;
             case R.id.btnJuice:
+                init();
                 Map<String, Integer> juice = readLine(R.id.btnJuice);
                 Log.d("test", juice.toString());
                 String key2 = juice.keySet().iterator().next();
@@ -75,6 +83,28 @@ public class MainActivity extends AppCompatActivity {
                 setImage(mImg1,key3);
                 mBtn1.setVisibility(View.VISIBLE);
                 break;
+            case R.id.btnPrice:
+                Map<String, Integer> allList = makeAllList();
+                String key;
+                Log.d("test", allList.toString());
+                Iterator<String> iterator = allList.keySet().iterator();
+                key = iterator.next();
+                mText1.setText(key);
+                mPrice1.setText(allList.get(key).toString());
+                setImage(mImg1,key);
+                mBtn1.setVisibility(View.VISIBLE);
+
+                key = iterator.next();
+                mText2.setText(key);
+                mPrice2.setText(allList.get(key).toString());
+                setImage(mImg2,key);
+                mBtn2.setVisibility(View.VISIBLE);
+
+                key = iterator.next();
+                mText3.setText(key);
+                mPrice3.setText(allList.get(key).toString());
+                setImage(mImg3,key);
+                mBtn3.setVisibility(View.VISIBLE);
         }
     }
     public Map<String, Integer> readLine(int btn) {
@@ -104,38 +134,36 @@ public class MainActivity extends AppCompatActivity {
         return result;
     }
     public void m0nClickImg(View v) {
+        Intent intent = new Intent(this, SubActivity1.class);
         switch (v.getId()) {
             case R.id.btnOrder1:
-
-                Intent intent = new Intent(this, SubActivity1.class);
                 intent.putExtra("name", mText1.getText().toString());
                 intent.putExtra("price",mPrice1.getText().toString());
                 startActivityForResult(intent, 0);
                 break;
+            case R.id.btnOrder2:
+                intent.putExtra("name", mText2.getText().toString());
+                intent.putExtra("price",mPrice2.getText().toString());
+                startActivityForResult(intent, 0);
+                break;
+            case R.id.btnOrder3:
+                intent.putExtra("name", mText3.getText().toString());
+                intent.putExtra("price",mPrice3.getText().toString());
+                startActivityForResult(intent, 0);
+                break;
+
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 0 && resultCode == RESULT_OK) {
-            Toast.makeText(this,mText1.getText().toString()+"주문 완료",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,data.getStringExtra("name")+"주문 완료",Toast.LENGTH_SHORT).show();
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
     public void m0nClickSearch(View v) {
-        Map<String, Integer> result = new HashMap<>();
-        Map<String, Integer> coffee = readLine(R.id.btnCoffee);
-        for (String key: coffee.keySet()){
-            result.put(key, coffee.get(key));
-        }
-        Map<String, Integer> juice = readLine(R.id.btnJuice);
-        for (String key: juice.keySet()){
-            result.put(key, juice.get(key));
-        }
-        Map<String, Integer> tea = readLine(R.id.btnTea);
-        for (String key: tea.keySet()){
-            result.put(key, tea.get(key));
-        }
+        Map<String, Integer> result = makeAllList();
         String search = editText.getText().toString();
         if (result.containsKey(search)) {
             mText1.setText(search);
@@ -145,6 +173,40 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this,search+" 메뉴는 존재하지 않습니다.",Toast.LENGTH_SHORT).show();
         }
+    }
+    public Map<String, Integer> makeAllList() {
+        HashMap<String, Integer> map = new HashMap<String,Integer>();
+        Map<String, Integer> coffee = readLine(R.id.btnCoffee);
+        for (String key: coffee.keySet()){
+            map.put(key, coffee.get(key));
+        }
+        Map<String, Integer> juice = readLine(R.id.btnJuice);
+        for (String key: juice.keySet()){
+            map.put(key, juice.get(key));
+        }
+        Map<String, Integer> tea = readLine(R.id.btnTea);
+        for (String key: tea.keySet()){
+            map.put(key, tea.get(key));
+        }
+        Map<String, Integer> result = sortByValue(map);
+        return result;
+    }
+    public static HashMap<String, Integer> sortByValue(HashMap<String, Integer> hm){
+        List<Map.Entry<String, Integer> > list =
+                new LinkedList<Map.Entry<String, Integer>>(hm.entrySet());
+
+        Collections.sort(list, new Comparator<Map.Entry<String, Integer> >() {
+            public int compare(Map.Entry<String, Integer> o1,
+                               Map.Entry<String, Integer> o2){
+                return (o1.getValue()).compareTo(o2.getValue());
+            }
+        });
+
+        HashMap<String, Integer> temp = new LinkedHashMap<String, Integer>();
+        for (Map.Entry<String, Integer> aa : list) {
+            temp.put(aa.getKey(), aa.getValue());
+        }
+        return temp;
     }
     public void setImage(ImageView mImg, String name) {
         switch (name) {
@@ -159,4 +221,5 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
+    
 }
