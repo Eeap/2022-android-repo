@@ -39,16 +39,18 @@ public class SubActivity2 extends AppCompatActivity {
 
         int sum = 0;
         Intent intent = getIntent();
+        // intent로부터 데이터를 arrayList로 받아옴.
         name = intent.getStringArrayListExtra("name");
         price = intent.getStringArrayListExtra("price");
         cnt = intent.getStringArrayListExtra("cnt");
 
+        //arrayList를 iterator를 이용해서 하나씩 불러옴
         Iterator<String> iteratorName = name.iterator();
         String menuName = iteratorName.next();
-
+        //arrayList를 iterator를 이용해서 하나씩 불러옴
         Iterator<String> iteratorPrice = price.iterator();
         String menuPrice = iteratorPrice.next();
-
+        //arrayList를 iterator를 이용해서 하나씩 불러옴
         Iterator<String> iteratorCnt = cnt.iterator();
         String menuCnt = iteratorCnt.next();
 
@@ -57,7 +59,9 @@ public class SubActivity2 extends AppCompatActivity {
         setImage(img1,menuName);
         cnt1.setText(menuCnt);
         sum += Integer.parseInt(menuPrice)*Integer.parseInt(menuCnt);
+        // 장바구니 데이터가 한개 더있는지 확인
         if (iteratorName.hasNext()){
+            //데이터가 있는 경우 추가로 더 view를 설정해줌
             menuName = iteratorName.next();
             menuPrice = iteratorPrice.next();
             menuCnt = iteratorCnt.next();
@@ -68,7 +72,9 @@ public class SubActivity2 extends AppCompatActivity {
             cnt2.setText(menuCnt);
             sum += Integer.parseInt(menuPrice)*Integer.parseInt(menuCnt);
         }
+        // 장바구니 데이터가 한개 더있는지 확인
         if (iteratorName.hasNext()){
+            //데이터가 있는 경우 추가로 더 view를 설정해줌
             menuName = iteratorName.next();
             menuPrice = iteratorPrice.next();
             menuCnt = iteratorCnt.next();
@@ -79,14 +85,22 @@ public class SubActivity2 extends AppCompatActivity {
             cnt3.setText(menuCnt);
             sum += Integer.parseInt(menuPrice)*Integer.parseInt(menuCnt);
         }
+        // 총 결제 금액을 띄워주는 text뷰
         resultView.setText("총 결제 할 금액  :  "+sum);
 
     }
+    /*
+    * 주문하기 버튼을 눌렀을 때 수행할 함수
+    * */
     public void m0nClickOrder(View v) {
         Intent data = new Intent();
+        //result code만 보내고 intent로는 아무것도 보내지 않음
         setResult(RESULT_OK,data);
         finish();
     }
+    /*
+    * 이미지뷰의 이미지를 설정하기 위한 함수
+    * */
     public void setImage(ImageView mImg, String name) {
         switch (name) {
             case "아메리카노":
