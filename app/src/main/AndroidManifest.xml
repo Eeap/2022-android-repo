@@ -12,6 +12,13 @@
         android:theme="@style/Theme.Cafe"
         tools:targetApi="31">
         <activity
+            android:name=".SubActivity2"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".SubActivity1"
             android:exported="false">
             <meta-data

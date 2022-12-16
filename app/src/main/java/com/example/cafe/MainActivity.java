@@ -24,6 +24,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
     private TextView mText1, mText2, mText3,mText4,mText5,mText6,mText7,mText8,mText9;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView mImg1,mImg2,mImg3,mImg4,mImg5,mImg6,mImg7,mImg8,mImg9;
     private Button mBtn1,mBtn2,mBtn3,mBtn4,mBtn5,mBtn6,mBtn7,mBtn8,mBtn9;
     private EditText editText;
+    private List<Map<String,Integer>> shopList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -292,10 +294,16 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 0 && resultCode == RESULT_OK) {
+        if (requestCode == 0 && resultCode == RESULT_FIRST_USER) {
             String name = data.getStringExtra("name");
             int cnt = Integer.parseInt(data.getStringExtra("cnt"));
-            Toast.makeText(this,name+" "+cnt+"개 주문 완료",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,name+" "+cnt+"개 담기 완료",Toast.LENGTH_SHORT).show();
+            HashMap<String, Integer> shop = new HashMap<>();
+            shop.put(name, cnt);
+            shopList.add(shop);
+        } else if (requestCode == 0 && resultCode == RESULT_OK) {
+            Toast.makeText(this,"주문 완료",Toast.LENGTH_SHORT).show();
+            shopList.clear();
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -303,7 +311,6 @@ public class MainActivity extends AppCompatActivity {
         init();
         Map<String, Integer> result = makeAllList();
         String search = editText.getText().toString();
-        System.out.println(search);
         if (result.containsKey(search)) {
             mText1.setText(search);
             mPrice1.setText(result.get(search).toString());
@@ -311,6 +318,32 @@ public class MainActivity extends AppCompatActivity {
             mBtn1.setVisibility(View.VISIBLE);
         } else {
             Toast.makeText(this,search+" 메뉴는 존재하지 않습니다.",Toast.LENGTH_SHORT).show();
+        }
+    }
+    public void m0nClickShop(View v) {
+        init();
+        if (shopList.isEmpty()) {
+            Toast.makeText(this,"장바구니에 아무것도 없습니다.",Toast.LENGTH_SHORT).show();
+        } else {
+            Map<String, Integer> result = makeAllList();
+            ArrayList<String> name = new ArrayList<>();
+            ArrayList<String> price = new ArrayList<>();
+            ArrayList<String> cnt = new ArrayList<>();
+            Intent intent = new Intent(this, SubActivity2.class);
+            for (Map<String, Integer> item : shopList) {
+                Set<Map.Entry<String, Integer>> entries = item.entrySet();
+                Map.Entry<String, Integer> ent = entries.iterator().next();
+                String itemName = ent.getKey();
+                String itemCnt = ent.getValue().toString();
+                String itemPrice = result.get(itemName).toString();
+                name.add(itemName);
+                price.add(itemPrice);
+                cnt.add(itemCnt);
+            }
+            intent.putExtra("name", name);
+            intent.putExtra("price",price);
+            intent.putExtra("cnt",cnt);
+            startActivityForResult(intent, 0);
         }
     }
     public Map<String, Integer> makeAllList() {
