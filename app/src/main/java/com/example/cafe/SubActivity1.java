@@ -35,7 +35,7 @@ public class SubActivity1 extends AppCompatActivity {
         Intent data = new Intent();
         data.putExtra("name", textName.getText().toString());
         data.putExtra("cnt", textCnt.getText().toString());
-        setResult(RESULT_OK,data);
+        setResult(RESULT_FIRST_USER,data);
         finish();
     }
     public void setImage(ImageView mImg, String name) {
