@@ -26,10 +26,10 @@ import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView mText1, mText2, mText3;
-    private TextView mPrice1, mPrice2, mPrice3;
-    private ImageView mImg1,mImg2,mImg3;
-    private Button mBtn1,mBtn2,mBtn3;
+    private TextView mText1, mText2, mText3,mText4,mText5,mText6,mText7,mText8,mText9;
+    private TextView mPrice1, mPrice2, mPrice3,mPrice4,mPrice5,mPrice6,mPrice7,mPrice8,mPrice9;
+    private ImageView mImg1,mImg2,mImg3,mImg4,mImg5,mImg6,mImg7,mImg8,mImg9;
+    private Button mBtn1,mBtn2,mBtn3,mBtn4,mBtn5,mBtn6,mBtn7,mBtn8,mBtn9;
     private EditText editText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +47,33 @@ public class MainActivity extends AppCompatActivity {
         mBtn1 = (Button) findViewById(R.id.btnOrder1);
         mBtn2 = (Button) findViewById(R.id.btnOrder2);
         mBtn3 = (Button) findViewById(R.id.btnOrder3);
+
+        mText4 = (TextView) findViewById(R.id.text4);
+        mText5 = (TextView) findViewById(R.id.text5);
+        mText6 = (TextView) findViewById(R.id.text6);
+        mPrice4 = (TextView) findViewById(R.id.price4);
+        mPrice5 = (TextView) findViewById(R.id.price5);
+        mPrice6 = (TextView) findViewById(R.id.price6);
+        mImg4 = (ImageView) findViewById(R.id.img4);
+        mImg5 = (ImageView) findViewById(R.id.img5);
+        mImg6 = (ImageView) findViewById(R.id.img6);
+        mBtn4 = (Button) findViewById(R.id.btnOrder4);
+        mBtn5 = (Button) findViewById(R.id.btnOrder5);
+        mBtn6 = (Button) findViewById(R.id.btnOrder6);
+
+        mText7 = (TextView) findViewById(R.id.text7);
+        mText8 = (TextView) findViewById(R.id.text8);
+        mText9 = (TextView) findViewById(R.id.text9);
+        mPrice7 = (TextView) findViewById(R.id.price7);
+        mPrice8 = (TextView) findViewById(R.id.price8);
+        mPrice9 = (TextView) findViewById(R.id.price9);
+        mImg7 = (ImageView) findViewById(R.id.img7);
+        mImg8 = (ImageView) findViewById(R.id.img8);
+        mImg9 = (ImageView) findViewById(R.id.img9);
+        mBtn7 = (Button) findViewById(R.id.btnOrder7);
+        mBtn8 = (Button) findViewById(R.id.btnOrder8);
+        mBtn9 = (Button) findViewById(R.id.btnOrder9);
+
         editText = (EditText) findViewById(R.id.text);
     }
 
@@ -56,32 +83,72 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btnCoffee:
                 Map<String, Integer> coffee = readLine(R.id.btnCoffee);
                 Log.d("test", coffee.toString());
-                String key1 = coffee.keySet().iterator().next();
-                Log.d("test", key1);
-                mText1.setText(key1);
-                mPrice1.setText(coffee.get(key1).toString());
-                setImage(mImg1,key1);
+                Iterator<String> itrC = coffee.keySet().iterator();
+                String keyC = itrC.next();
+                mText1.setText(keyC);
+                mPrice1.setText(coffee.get(keyC).toString());
+                setImage(mImg1,keyC);
                 mBtn1.setVisibility(View.VISIBLE);
+
+                keyC = itrC.next();
+                mText2.setText(keyC);
+                mPrice2.setText(coffee.get(keyC).toString());
+                setImage(mImg2,keyC);
+                mBtn2.setVisibility(View.VISIBLE);
+
+                keyC = itrC.next();
+                mText3.setText(keyC);
+                mPrice3.setText(coffee.get(keyC).toString());
+                setImage(mImg3,keyC);
+                mBtn3.setVisibility(View.VISIBLE);
                 break;
             case R.id.btnJuice:
                 Map<String, Integer> juice = readLine(R.id.btnJuice);
                 Log.d("test", juice.toString());
-                String key2 = juice.keySet().iterator().next();
-                Log.d("test", key2);
-                mText1.setText(key2);
-                mPrice1.setText(juice.get(key2).toString());
-                setImage(mImg1,key2);
+
+                Iterator<String> itrJ = juice.keySet().iterator();
+                String keyJ = itrJ.next();
+                mText1.setText(keyJ);
+                mPrice1.setText(juice.get(keyJ).toString());
+                setImage(mImg1,keyJ);
                 mBtn1.setVisibility(View.VISIBLE);
+
+                keyJ = itrJ.next();
+                mText2.setText(keyJ);
+                mPrice2.setText(juice.get(keyJ).toString());
+                setImage(mImg2,keyJ);
+                mBtn2.setVisibility(View.VISIBLE);
+
+                keyJ = itrJ.next();
+                mText3.setText(keyJ);
+                mPrice3.setText(juice.get(keyJ).toString());
+                setImage(mImg3,keyJ);
+                mBtn3.setVisibility(View.VISIBLE);
+
                 break;
             case R.id.btnTea:
                 Map<String, Integer> tea = readLine(R.id.btnTea);
                 Log.d("test", tea.toString());
-                String key3 = tea.keySet().iterator().next();
-                Log.d("test", key3);
-                mText1.setText(key3);
-                mPrice1.setText(tea.get(key3).toString());
-                setImage(mImg1,key3);
+
+                Iterator<String> itrT = tea.keySet().iterator();
+                String keyT = itrT.next();
+                mText1.setText(keyT);
+                mPrice1.setText(tea.get(keyT).toString());
+                setImage(mImg1,keyT);
                 mBtn1.setVisibility(View.VISIBLE);
+
+                keyT = itrT.next();
+                mText2.setText(keyT);
+                mPrice2.setText(tea.get(keyT).toString());
+                setImage(mImg2,keyT);
+                mBtn2.setVisibility(View.VISIBLE);
+
+                keyT = itrT.next();
+                mText3.setText(keyT);
+                mPrice3.setText(tea.get(keyT).toString());
+                setImage(mImg3,keyT);
+                mBtn3.setVisibility(View.VISIBLE);
+
                 break;
             case R.id.btnPrice:
                 Map<String, Integer> allList = makeAllList();
@@ -105,6 +172,42 @@ public class MainActivity extends AppCompatActivity {
                 mPrice3.setText(allList.get(key).toString());
                 setImage(mImg3,key);
                 mBtn3.setVisibility(View.VISIBLE);
+
+                key = iterator.next();
+                mText4.setText(key);
+                mPrice4.setText(allList.get(key).toString());
+                setImage(mImg4,key);
+                mBtn4.setVisibility(View.VISIBLE);
+
+                key = iterator.next();
+                mText5.setText(key);
+                mPrice5.setText(allList.get(key).toString());
+                setImage(mImg5,key);
+                mBtn5.setVisibility(View.VISIBLE);
+
+                key = iterator.next();
+                mText6.setText(key);
+                mPrice6.setText(allList.get(key).toString());
+                setImage(mImg6,key);
+                mBtn6.setVisibility(View.VISIBLE);
+
+                key = iterator.next();
+                mText7.setText(key);
+                mPrice7.setText(allList.get(key).toString());
+                setImage(mImg7,key);
+                mBtn7.setVisibility(View.VISIBLE);
+
+                key = iterator.next();
+                mText8.setText(key);
+                mPrice8.setText(allList.get(key).toString());
+                setImage(mImg8,key);
+                mBtn8.setVisibility(View.VISIBLE);
+
+                key = iterator.next();
+                mText9.setText(key);
+                mPrice9.setText(allList.get(key).toString());
+                setImage(mImg9,key);
+                mBtn9.setVisibility(View.VISIBLE);
         }
     }
     public Map<String, Integer> readLine(int btn) {
@@ -126,7 +229,10 @@ public class MainActivity extends AppCompatActivity {
             inputStream.read(nbytes);
             String str = new String(nbytes);
             String[] split = str.split("\n");
+            System.out.println(split[0]);
             result.put(split[0],Integer.parseInt(split[1]));
+            result.put(split[2],Integer.parseInt(split[3]));
+            result.put(split[4],Integer.parseInt(split[5]));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -151,6 +257,36 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("price",mPrice3.getText().toString());
                 startActivityForResult(intent, 0);
                 break;
+            case R.id.btnOrder4:
+                intent.putExtra("name", mText4.getText().toString());
+                intent.putExtra("price",mPrice4.getText().toString());
+                startActivityForResult(intent, 0);
+                break;
+            case R.id.btnOrder5:
+                intent.putExtra("name", mText5.getText().toString());
+                intent.putExtra("price",mPrice5.getText().toString());
+                startActivityForResult(intent, 0);
+                break;
+            case R.id.btnOrder6:
+                intent.putExtra("name", mText6.getText().toString());
+                intent.putExtra("price",mPrice6.getText().toString());
+                startActivityForResult(intent, 0);
+                break;
+            case R.id.btnOrder7:
+                intent.putExtra("name", mText7.getText().toString());
+                intent.putExtra("price",mPrice7.getText().toString());
+                startActivityForResult(intent, 0);
+                break;
+            case R.id.btnOrder8:
+                intent.putExtra("name", mText8.getText().toString());
+                intent.putExtra("price",mPrice8.getText().toString());
+                startActivityForResult(intent, 0);
+                break;
+            case R.id.btnOrder9:
+                intent.putExtra("name", mText9.getText().toString());
+                intent.putExtra("price",mPrice9.getText().toString());
+                startActivityForResult(intent, 0);
+                break;
 
         }
     }
@@ -167,6 +303,7 @@ public class MainActivity extends AppCompatActivity {
         init();
         Map<String, Integer> result = makeAllList();
         String search = editText.getText().toString();
+        System.out.println(search);
         if (result.containsKey(search)) {
             mText1.setText(search);
             mPrice1.setText(result.get(search).toString());
@@ -221,6 +358,24 @@ public class MainActivity extends AppCompatActivity {
             case "오렌지주스":
                 mImg.setImageResource(R.drawable.juice);
                 break;
+            case "카페라떼":
+                mImg.setImageResource(R.drawable.latte);
+                break;
+            case "카푸치노":
+                mImg.setImageResource(R.drawable.cappucino);
+                break;
+            case "캐모마일":
+                mImg.setImageResource(R.drawable.chamomile);
+                break;
+            case "녹차":
+                mImg.setImageResource(R.drawable.green);
+                break;
+            case "딸기주스":
+                mImg.setImageResource(R.drawable.strawberry);
+                break;
+            case "망고주스":
+                mImg.setImageResource(R.drawable.mango);
+                break;
         }
     }
     public void init() {
@@ -238,5 +393,35 @@ public class MainActivity extends AppCompatActivity {
         mPrice3.setText(null);
         mImg3.setImageDrawable(null);
         mBtn3.setVisibility(View.GONE);
+
+        mText4.setText(null);
+        mPrice4.setText(null);
+        mImg4.setImageDrawable(null);
+        mBtn4.setVisibility(View.GONE);
+
+        mText5.setText(null);
+        mPrice5.setText(null);
+        mImg5.setImageDrawable(null);
+        mBtn5.setVisibility(View.GONE);
+
+        mText6.setText(null);
+        mPrice6.setText(null);
+        mImg6.setImageDrawable(null);
+        mBtn6.setVisibility(View.GONE);
+
+        mText7.setText(null);
+        mPrice7.setText(null);
+        mImg7.setImageDrawable(null);
+        mBtn7.setVisibility(View.GONE);
+
+        mText8.setText(null);
+        mPrice8.setText(null);
+        mImg8.setImageDrawable(null);
+        mBtn8.setVisibility(View.GONE);
+
+        mText9.setText(null);
+        mPrice9.setText(null);
+        mImg9.setImageDrawable(null);
+        mBtn9.setVisibility(View.GONE);
     }
 }

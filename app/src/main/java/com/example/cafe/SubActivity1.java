@@ -49,6 +49,24 @@ public class SubActivity1 extends AppCompatActivity {
             case "오렌지주스":
                 mImg.setImageResource(R.drawable.juice);
                 break;
+            case "카페라떼":
+                mImg.setImageResource(R.drawable.latte);
+                break;
+            case "카푸치노":
+                mImg.setImageResource(R.drawable.cappucino);
+                break;
+            case "캐모마일":
+                mImg.setImageResource(R.drawable.chamomile);
+                break;
+            case "녹차":
+                mImg.setImageResource(R.drawable.green);
+                break;
+            case "딸기주스":
+                mImg.setImageResource(R.drawable.strawberry);
+                break;
+            case "망고주스":
+                mImg.setImageResource(R.drawable.mango);
+                break;
         }
     }
     public void m0nClickPlus(View v) {
