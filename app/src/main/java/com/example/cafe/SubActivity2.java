@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,6 +18,8 @@ public class SubActivity2 extends AppCompatActivity {
     private TextView text1,price1,cnt1,text2,price2,cnt2,text3,price3,cnt3;
     private ImageView img1,img2,img3;
     private TextView resultView;
+    private Button btn1,btn2,btn3;
+    private int sum;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,18 +29,21 @@ public class SubActivity2 extends AppCompatActivity {
         price1 = (TextView) findViewById(R.id.price1);
         cnt1 = (TextView) findViewById(R.id.cnt1);
         img1 = (ImageView) findViewById(R.id.img1);
+        btn1 = (Button) findViewById(R.id.btn1);
 
         text2 = (TextView) findViewById(R.id.text2);
         price2 = (TextView) findViewById(R.id.price2);
         cnt2 = (TextView) findViewById(R.id.cnt2);
         img2 = (ImageView) findViewById(R.id.img2);
+        btn2 = (Button) findViewById(R.id.btn2);
 
         text3 = (TextView) findViewById(R.id.text3);
         price3 = (TextView) findViewById(R.id.price3);
         cnt3 = (TextView) findViewById(R.id.cnt3);
         img3 = (ImageView) findViewById(R.id.img3);
+        btn3 = (Button) findViewById(R.id.btn3);
 
-        int sum = 0;
+        sum = 0;
         Intent intent = getIntent();
         // intent로부터 데이터를 arrayList로 받아옴.
         name = intent.getStringArrayListExtra("name");
@@ -58,6 +64,7 @@ public class SubActivity2 extends AppCompatActivity {
         price1.setText(menuPrice);
         setImage(img1,menuName);
         cnt1.setText(menuCnt);
+        btn1.setVisibility(View.VISIBLE);
         sum += Integer.parseInt(menuPrice)*Integer.parseInt(menuCnt);
         // 장바구니 데이터가 한개 더있는지 확인
         if (iteratorName.hasNext()){
@@ -70,6 +77,7 @@ public class SubActivity2 extends AppCompatActivity {
             price2.setText(menuPrice);
             setImage(img2,menuName);
             cnt2.setText(menuCnt);
+            btn2.setVisibility(View.VISIBLE);
             sum += Integer.parseInt(menuPrice)*Integer.parseInt(menuCnt);
         }
         // 장바구니 데이터가 한개 더있는지 확인
@@ -83,6 +91,7 @@ public class SubActivity2 extends AppCompatActivity {
             price3.setText(menuPrice);
             setImage(img3,menuName);
             cnt3.setText(menuCnt);
+            btn3.setVisibility(View.VISIBLE);
             sum += Integer.parseInt(menuPrice)*Integer.parseInt(menuCnt);
         }
         // 총 결제 금액을 띄워주는 text뷰
@@ -98,6 +107,41 @@ public class SubActivity2 extends AppCompatActivity {
         setResult(RESULT_OK,data);
         finish();
     }
+    /*
+     * 취소 버튼을 눌렀을 때 수행할 함수
+     * */
+    public void m0nClickCancel(View v) {
+        switch (v.getId()) {
+            case R.id.btn1:
+                text1.setText(null);
+                price1.setText(null);
+                sum-=Integer.parseInt(price1.getText().toString());
+                cnt1.setText(null);
+                img1.setImageDrawable(null);
+                btn1.setVisibility(View.GONE);
+                resultView.setText("총 결제 할 금액  :  "+sum);
+                break;
+            case R.id.btn2:
+                text2.setText(null);
+                price2.setText(null);
+                cnt2.setText(null);
+                img2.setImageDrawable(null);
+                sum-=Integer.parseInt(price1.getText().toString());
+                btn2.setVisibility(View.GONE);
+                resultView.setText("총 결제 할 금액  :  "+sum);
+                break;
+            case R.id.btn3:
+                text3.setText(null);
+                price3.setText(null);
+                cnt3.setText(null);
+                img3.setImageDrawable(null);
+                sum-=Integer.parseInt(price1.getText().toString());
+                btn3.setVisibility(View.GONE);
+                resultView.setText("총 결제 할 금액  :  "+sum);
+                break;
+        }
+    }
+
     /*
     * 이미지뷰의 이미지를 설정하기 위한 함수
     * */
