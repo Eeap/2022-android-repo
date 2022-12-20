@@ -113,33 +113,32 @@ public class SubActivity2 extends AppCompatActivity {
     public void m0nClickCancel(View v) {
         switch (v.getId()) {
             case R.id.btn1:
+                sum-=(Integer.parseInt(price1.getText().toString())*Integer.parseInt(cnt1.getText().toString()));
                 text1.setText(null);
                 price1.setText(null);
-                sum-=Integer.parseInt(price1.getText().toString());
                 cnt1.setText(null);
                 img1.setImageDrawable(null);
                 btn1.setVisibility(View.GONE);
-                resultView.setText("총 결제 할 금액  :  "+sum);
                 break;
             case R.id.btn2:
+                sum-=(Integer.parseInt(price2.getText().toString())*Integer.parseInt(cnt2.getText().toString()));
                 text2.setText(null);
                 price2.setText(null);
                 cnt2.setText(null);
                 img2.setImageDrawable(null);
-                sum-=Integer.parseInt(price1.getText().toString());
                 btn2.setVisibility(View.GONE);
-                resultView.setText("총 결제 할 금액  :  "+sum);
                 break;
             case R.id.btn3:
+                sum-=(Integer.parseInt(price3.getText().toString())*Integer.parseInt(cnt3.getText().toString()));
                 text3.setText(null);
                 price3.setText(null);
                 cnt3.setText(null);
                 img3.setImageDrawable(null);
-                sum-=Integer.parseInt(price1.getText().toString());
                 btn3.setVisibility(View.GONE);
-                resultView.setText("총 결제 할 금액  :  "+sum);
                 break;
         }
+
+        resultView.setText("총 결제 할 금액  :  "+sum);
     }
 
     /*
